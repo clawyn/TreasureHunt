@@ -66,7 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
     public void run(){
-        //other methode delta
+        // methode delta
         double drawInterval = 1000000000 /FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
@@ -117,9 +117,16 @@ public class GamePanel extends JPanel implements Runnable {
         tileM.draw(g2);
 
         //object
-        for (int i = 0; i < obj.length; i++) {
-            if (obj[i] != null) {
-                obj[i].draw(g2, this);
+//        for (int i = 0; i < obj.length; i++) {
+//            if (obj[i] != null) {
+//                obj[i].draw(g2, this);
+//            }
+//        }
+//        or
+
+        for (SuperObject superObject : obj) {
+            if (superObject != null) {
+                superObject.draw(g2, this);
             }
         }
 

@@ -3,6 +3,7 @@ package be.technifutur.object;
 import be.technifutur.main.GamePanel;
 
 import javax.imageio.ImageIO;
+import java.util.Objects;
 
 public class OBJ_Boots extends SuperObject{
     GamePanel gp;
@@ -14,12 +15,12 @@ public class OBJ_Boots extends SuperObject{
         name = "Boots";
         try {
 
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/purpleBoot.png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/objects/purpleBoot.png")));
             uTool.scaleImage(image,gp.tileSize,gp.tileSize);
 
         } catch (
                 Exception e) {
-            e.printStackTrace();
+            System.out.println("object Boots not found");
         }
     }
 }

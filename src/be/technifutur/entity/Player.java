@@ -8,12 +8,10 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
     GamePanel gp;
-    //maybe problem import class
     KeyHandler keyH;
 
     public final int screenX;
     public final int screenY;
-    int standCounter = 0;
     public int hasKey = 0;
 
 
@@ -38,6 +36,8 @@ public class Player extends Entity {
         getPlayerImage();
     }
 
+
+
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
@@ -59,26 +59,26 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (keyH.upPressed == true || keyH.downPressed == true ||
-                keyH.leftPressed == true || keyH.rightPressed == true) {
+        if (keyH.upPressed || keyH.downPressed ||
+                keyH.leftPressed || keyH.rightPressed) {
 
-            if (keyH.upPressed == true) {
+            if (keyH.upPressed) {
                 direction = "up";
 
-            } else if (keyH.downPressed == true) {
+            } else if (keyH.downPressed) {
                 direction = "down";
 
-            } else if (keyH.leftPressed == true) {
+            } else if (keyH.leftPressed) {
                 direction = "left";
 
-            } else if (keyH.rightPressed == true) {
+            } else {
                 direction = "right";
 
             }
 
             // if collision id false, player can move
 
-            if (collisionOn == false) {
+            if (!collisionOn) {
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -200,4 +200,5 @@ public class Player extends Entity {
         }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
+
 }

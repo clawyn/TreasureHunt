@@ -21,7 +21,7 @@ public class Sound {
             clip = AudioSystem.getClip();
             clip.open(ais);
         }catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("set file sound not found");
         }
     }
     public void play() {

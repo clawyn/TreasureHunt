@@ -6,9 +6,9 @@ import be.technifutur.main.UtilityTool;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class Entity {
-    public String hasKey;
     GamePanel gp;
     public int worldX, worldY;
     public int speed;
@@ -27,6 +27,7 @@ public class Entity {
         this.gp =gp;
     }
 
+
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
@@ -37,6 +38,7 @@ public class Entity {
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX  &&
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY ) {
+
             switch (direction) {
                 case "up":
                     if (spriteNum == 1) {
@@ -82,11 +84,53 @@ public class Entity {
         BufferedImage image = null;
 
         try{
-            image = ImageIO.read(getClass().getResourceAsStream(imagePath+".png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("set up image path error");
         }
         return image;
     }
+
+//    public BufferedImage getImageDirection() {
+//
+//        BufferedImage image = null;
+//
+//        switch (direction) {
+//            case "up":
+//                if (spriteNum == 1) {
+//                    image = up1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = up2;
+//                }
+//                break;
+//            case "down":
+//                if (spriteNum == 1) {
+//                    image = down1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = down2;
+//                }
+//                break;
+//            case "left":
+//                if (spriteNum == 1) {
+//                    image = left1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = left2;
+//                }
+//                break;
+//            case "right":
+//                if (spriteNum == 1) {
+//                    image = right1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = right2;
+//                }
+//                break;
+//
+//        }
+//        return image;
+//    }
 }

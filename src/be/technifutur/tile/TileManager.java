@@ -41,7 +41,7 @@ public class TileManager extends Tile{
             tile[index].collision = collision;
 
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("set up failed");
         }
 
     }
@@ -74,7 +74,7 @@ public class TileManager extends Tile{
 
         }
         catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("load map error");
         }
     }
     public void draw(Graphics2D g2) {
