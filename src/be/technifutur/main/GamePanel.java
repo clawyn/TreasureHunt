@@ -43,8 +43,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     //GAME STATE
     public int gameState;
-    public final int playStage = 1;
+    public int titleState = 0;
+    public final int playState = 1;
     public final int pauseState = 2;
+
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -56,9 +58,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setUpGame(){
         asSetter.setObject();
-        playMusic(0);
+//        playMusic(0);
         //stopMusic();
-        gameState = playStage;
+        gameState = titleState;
     }
 
     public void startGameThread() {
@@ -92,13 +94,11 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount = 0;
                 timer =0;
             }
-
         }
-
     }
 
     public void update() {
-        if (gameState == playStage) {
+        if (gameState == playState) {
             player.update();
         }
         if (gameState == pauseState) {
@@ -112,11 +112,22 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
+        //debug
+        long drawStart = 0;
+        if (keyH.showDebugText == true) {
+            drawStart = System.nanoTime();
+        }
 
-        //tile
-        tileM.draw(g2);
+        //title screen
+        if (gameState == titleState) {
+            ui.draw(g2);
+        }
+        //other
+        else {
+            //tile
+            tileM.draw(g2);
 
-        //object
+            //object
 //        for (int i = 0; i < obj.length; i++) {
 //            if (obj[i] != null) {
 //                obj[i].draw(g2, this);
@@ -124,19 +135,36 @@ public class GamePanel extends JPanel implements Runnable {
 //        }
 //        or
 
-        for (SuperObject superObject : obj) {
-            if (superObject != null) {
-                superObject.draw(g2, this);
+            for (SuperObject superObject : obj) {
+                if (superObject != null) {
+                    superObject.draw(g2, this);
+                }
             }
+
+            //player
+            player.draw(g2);
+
+            //ui
+            ui.draw(g2);
         }
 
-        //player
-        player.draw(g2);
+        //debug
+        if (keyH.showDebugText == true){
+            long drawEnd = System.nanoTime();
+            long passed = drawEnd - drawStart;
 
-        //ui
-        ui.draw(g2);
+            g2.setFont(new Font("Arial", Font.PLAIN, 20));
+            g2.setColor(Color.white);
+            int x = 10;
+            int y = 400;
+            int lineHeight =20;
 
-
+            g2.drawString("WorldX" + player.worldX, x, y); y += lineHeight;
+            g2.drawString("WorldY" + player.worldY, x, y); y += lineHeight;
+            g2.drawString("Col" + (player.worldY + player.solidArea.x) / tileSize, x, y); y += lineHeight;
+            g2.drawString("Row" + (player.worldY + player.solidArea.y) / tileSize, x, y); y += lineHeight;
+            g2.drawString("Draw time: " + passed, x, y);
+        }
         g2.dispose();
     }
     public void playMusic (int i){
