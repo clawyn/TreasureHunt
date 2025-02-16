@@ -52,10 +52,12 @@ public class UI {
             drawTime();
 
         }
+
         //pause state
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
         }
+
         if (gameFinished) {
             g2.setFont(arial_40);
             g2.setColor(Color.white);
@@ -88,9 +90,6 @@ public class UI {
             gp.gameThread = null;
 
         }
-//        if (!gameFinished) {
-//            drawTime();
-//        }
     }
 
     public void drawPauseScreen() {
@@ -102,26 +101,9 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    public void drawSubWindow(int x, int y, int width, int height) {
-        Color c = new Color(0, 0, 0, 200);
-        g2.setColor(c);
-        g2.fillRoundRect(x, y, width, height, 35, 35);
-
-        c = new Color(255, 255, 255);
-        g2.setColor(c);
-        g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x + 5, y + 5, width, height, 25, 25);
-    }
-
     public int getXforCenterText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth / 2 - length / 2;
-        return x;
-    }
-
-    public int getXforAlignToRightText(String text, int tailX) {
-        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = tailX - length;
         return x;
     }
 
@@ -131,7 +113,7 @@ public class UI {
 
         //title name
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 85F));
-        String text = "Heros vs Monstre";
+        String text = "Treasure Hunt";
         int x = getXforCenterText(text);
         int y = gp.tileSize * 3;
 
@@ -171,6 +153,7 @@ public class UI {
             g2.drawString(">", x - gp.tileSize, y);
         }
     }
+
     public void drawTime(){
 
         g2.setFont(arial_40);
@@ -194,6 +177,5 @@ public class UI {
                 messageOn = false;
             }
         }
-
     }
 }
