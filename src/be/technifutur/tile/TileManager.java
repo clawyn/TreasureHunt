@@ -105,6 +105,5 @@ public class TileManager extends Tile{
                 worldRow++;
             }
         }
-
     }
 }

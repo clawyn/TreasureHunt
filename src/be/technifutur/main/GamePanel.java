@@ -57,7 +57,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame(){
         asSetter.setObject();
         playMusic(0);
-        //stopMusic();
         gameState = playStage;
     }
 
@@ -101,10 +100,6 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playStage) {
             player.update();
         }
-        if (gameState == pauseState) {
-            //nothing
-        }
-
     }
 
     public void paintComponent(Graphics g) {
@@ -115,14 +110,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         //tile
         tileM.draw(g2);
-
-        //object
-//        for (int i = 0; i < obj.length; i++) {
-//            if (obj[i] != null) {
-//                obj[i].draw(g2, this);
-//            }
-//        }
-//        or
 
         for (SuperObject superObject : obj) {
             if (superObject != null) {

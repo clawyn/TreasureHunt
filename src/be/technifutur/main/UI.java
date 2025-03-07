@@ -11,6 +11,7 @@ public class UI {
     Graphics2D g2;
     Font arial_40, arial_80B;
     BufferedImage keyImage;
+
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -40,10 +41,6 @@ public class UI {
 
         g2.setFont (arial_40);
         g2.setColor (Color.white);
-
-        if (gp.gameState == gp.playStage) {
-            //do playState stuff later
-        }
 
 
         if (gameFinished) {
