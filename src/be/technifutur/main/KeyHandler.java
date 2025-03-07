@@ -68,7 +68,6 @@ public class KeyHandler implements KeyListener {
 
     public void playState(int code){
         if (code == KeyEvent.VK_Z || code == KeyEvent.VK_UP) {
-        if (code == KeyEvent.VK_Z || code == KeyEvent.VK_UP) {
             upPressed = true;
         }
         if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {

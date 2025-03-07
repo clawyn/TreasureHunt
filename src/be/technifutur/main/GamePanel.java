@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame(){
         asSetter.setObject();
         playMusic(0);
-        gameState = playStage;
+        gameState = playState;
     }
 
     public void startGameThread() {
@@ -97,7 +97,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (gameState == playStage) {
+        if (gameState == playState) {
             player.update();
         }
     }
@@ -161,7 +161,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             g2.drawString("WorldX" + player.worldX, x, y); y += lineHeight;
             g2.drawString("WorldY" + player.worldY, x, y); y += lineHeight;
-            g2.drawString("Col" + (player.worldY + player.solidArea.x) / tileSize, x, y); y += lineHeight;
+            g2.drawString("Col" + (player.worldX + player.solidArea.x) / tileSize, x, y); y += lineHeight;
             g2.drawString("Row" + (player.worldY + player.solidArea.y) / tileSize, x, y); y += lineHeight;
             g2.drawString("Draw time: " + passed, x, y);
         }
