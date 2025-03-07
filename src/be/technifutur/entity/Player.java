@@ -59,38 +59,29 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (keyH.upPressed || keyH.downPressed ||
-                keyH.leftPressed || keyH.rightPressed) {
+        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
 
-            if (keyH.upPressed) {
-                direction = "up";
+            if (keyH.upPressed) {direction = "up";
 
-            } else if (keyH.downPressed) {
-                direction = "down";
+            } else if (keyH.downPressed) {direction = "down";
 
-            } else if (keyH.leftPressed) {
-                direction = "left";
+            } else if (keyH.leftPressed) {direction = "left";
 
             } else {
                 direction = "right";
-
             }
 
             // if collision id false, player can move
 
             if (!collisionOn) {
                 switch (direction) {
-                    case "up":
-                        worldY -= speed;
+                    case "up": worldY -= speed;
                         break;
-                    case "down":
-                        worldY += speed;
+                    case "down": worldY += speed;
                         break;
-                    case "left":
-                        worldX -= speed;
+                    case "left": worldX -= speed;
                         break;
-                    case "right":
-                        worldX += speed;
+                    case "right": worldX += speed;
                         break;
                 }
             }
@@ -114,7 +105,6 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
-
     }
 
     public void pickUpObject(int i) {
@@ -128,16 +118,17 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     gp.ui.showMessage(" you get a key ! ");
                     break;
+
                 case "Door":
                     if (hasKey > 0) {
                         gp.playSE(3);
                         gp.obj[i] = null;
                         hasKey--;
                         gp.ui.showMessage(" you opened the door ! ");
-                    }
-                    else {
+                    } else {
                         gp.ui.showMessage("you need a key ! ");
                     }
+
                     System.out.println("Key: " + hasKey);
                     break;
 
@@ -155,7 +146,6 @@ public class Player extends Entity {
                     gp.stopMusic();
                     gp.playSE(4);
                     break;
-
             }
         }
     }
@@ -165,38 +155,21 @@ public class Player extends Entity {
         BufferedImage image = null;
         switch (direction) {
             case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
+                if (spriteNum == 1) {image = up1;}
+                if (spriteNum == 2) {image = up2;}
                 break;
             case "down":
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
+                if (spriteNum == 1) {image = down1;}
+                if (spriteNum == 2) {image = down2;}
                 break;
             case "left":
-                if (spriteNum == 1) {
-                    image = left1;
-                }
-                if (spriteNum == 2) {
-                    image = left2;
-                }
+                if (spriteNum == 1) {image = left1;}
+                if (spriteNum == 2) {image = left2;}
                 break;
             case "right":
-                if (spriteNum == 1) {
-                    image = right1;
-                }
-                if (spriteNum == 2) {
-                    image = right2;
-                }
+                if (spriteNum == 1) {image = right1;}
+                if (spriteNum == 2) {image = right2;}
                 break;
-
         }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
