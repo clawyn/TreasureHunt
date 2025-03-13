@@ -62,6 +62,7 @@ public class CollisionChecker {
                 break;
         }
     }
+
     public int checkObject(Entity entity, boolean player) {
         int index = 999;
 
@@ -83,7 +84,8 @@ public class CollisionChecker {
                             if (gp.obj[i].collision) {
                                 entity.collisionOn = true;
                             }
-                            if (player) {index = i;
+                            if (player) {
+                                index = i;
                             }
                         }
                         break;
@@ -94,7 +96,8 @@ public class CollisionChecker {
                             if (gp.obj[i].collision) {
                                 entity.collisionOn = true;
                             }
-                            if (player) {index = i;
+                            if (player) {
+                                index = i;
                             }
                         }
                         break;

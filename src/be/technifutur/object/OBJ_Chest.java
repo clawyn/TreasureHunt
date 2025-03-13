@@ -5,7 +5,7 @@ import be.technifutur.main.GamePanel;
 import javax.imageio.ImageIO;
 import java.util.Objects;
 
-public class OBJ_Chest extends SuperObject{
+public class OBJ_Chest extends SuperObject {
     GamePanel gp;
 
     public OBJ_Chest(GamePanel gp) {
@@ -13,11 +13,11 @@ public class OBJ_Chest extends SuperObject{
         this.gp = gp;
 
         name = "Chest";
-        try{
+        try {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/objects/chest.png")));
-            uTool.scaleImage(image,gp.tileSize,gp.tileSize);
-        }catch (Exception e){
+            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        } catch (Exception e) {
             System.out.println("object chest not found");
 
         }

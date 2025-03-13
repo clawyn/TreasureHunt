@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     //entity and objects
-    public Player player = new Player(this,keyH);
+    public Player player = new Player(this, keyH);
     public SuperObject[] obj = new SuperObject[10];
 
 
@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
-    public void setUpGame(){
+    public void setUpGame() {
         asSetter.setObject();
         playMusic(0);
         gameState = playState;
@@ -66,13 +66,14 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
     }
-    public void run(){
+
+    public void run() {
         // methode delta
-        double drawInterval = 1000000000 /FPS;
+        double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
-        long timer =0;
+        long timer = 0;
         int drawCount = 0;
 
         while (gameThread != null) {
@@ -91,7 +92,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (timer >= 1000000000) {
                 System.out.println("FPS: " + drawCount);
                 drawCount = 0;
-                timer =0;
+                timer = 0;
             }
         }
     }
@@ -122,18 +123,11 @@ public class GamePanel extends JPanel implements Runnable {
             //tile
             tileM.draw(g2);
 
-        for (SuperObject superObject : obj) {
-            if (superObject != null) {
-                superObject.draw(g2, this);
+            for (SuperObject superObject : obj) {
+                if (superObject != null) {
+                    superObject.draw(g2, this);
+                }
             }
-        }
-            //object
-//        for (int i = 0; i < obj.length; i++) {
-//            if (obj[i] != null) {
-//                obj[i].draw(g2, this);
-//            }
-//        }
-//        or
 
             for (SuperObject superObject : obj) {
                 if (superObject != null) {
@@ -149,7 +143,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         //debug
-        if (keyH.showDebugText == true){
+        if (keyH.showDebugText == true) {
             long drawEnd = System.nanoTime();
             long passed = drawEnd - drawStart;
 
@@ -157,27 +151,32 @@ public class GamePanel extends JPanel implements Runnable {
             g2.setColor(Color.white);
             int x = 10;
             int y = 400;
-            int lineHeight =20;
+            int lineHeight = 20;
 
-            g2.drawString("WorldX" + player.worldX, x, y); y += lineHeight;
-            g2.drawString("WorldY" + player.worldY, x, y); y += lineHeight;
-            g2.drawString("Col" + (player.worldX + player.solidArea.x) / tileSize, x, y); y += lineHeight;
-            g2.drawString("Row" + (player.worldY + player.solidArea.y) / tileSize, x, y); y += lineHeight;
+            g2.drawString("WorldX" + player.worldX, x, y);
+            y += lineHeight;
+            g2.drawString("WorldY" + player.worldY, x, y);
+            y += lineHeight;
+            g2.drawString("Col" + (player.worldX + player.solidArea.x) / tileSize, x, y);
+            y += lineHeight;
+            g2.drawString("Row" + (player.worldY + player.solidArea.y) / tileSize, x, y);
+            y += lineHeight;
             g2.drawString("Draw time: " + passed, x, y);
         }
         g2.dispose();
     }
-    public void playMusic (int i){
+
+    public void playMusic(int i) {
         music.setFile(i);
         music.play();
         music.loop();
     }
 
-    public void stopMusic(){
+    public void stopMusic() {
         music.stop();
     }
 
-    public void playSE(int i){
+    public void playSE(int i) {
         se.setFile(i);
         se.play();
     }

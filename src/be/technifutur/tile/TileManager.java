@@ -8,9 +8,9 @@ import java.awt.*;
 import java.io.*;
 import java.util.Objects;
 
-public class TileManager extends Tile{
+public class TileManager extends Tile {
     GamePanel gp;
-    public Tile [] tile;
+    public Tile[] tile;
     public int[][] mapTileNum;
 
     public TileManager(GamePanel gp) {
@@ -31,21 +31,23 @@ public class TileManager extends Tile{
         setUp(5, "sand", false);
 
     }
-    public void setUp(int index, String imageName,boolean collision) {
+
+    public void setUp(int index, String imageName, boolean collision) {
         UtilityTool uTool = new UtilityTool();
 
-        try{
+        try {
             tile[index] = new Tile();
             tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/" + imageName + ".png")));
             tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("set up failed");
         }
 
     }
-    public void loadMap(String filePath){
+
+    public void loadMap(String filePath) {
 
         try {
             InputStream is = getClass().getResourceAsStream(filePath);//"/maps/map01.txt"
@@ -72,11 +74,11 @@ public class TileManager extends Tile{
             }
             br.close();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("load map error");
         }
     }
+
     public void draw(Graphics2D g2) {
         int worldCol = 0;
         int worldRow = 0;
@@ -90,12 +92,12 @@ public class TileManager extends Tile{
             int screenX = worldX - gp.player.worldX + gp.player.screenX;
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-            if     (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-                    worldX - gp.tileSize < gp.player.worldX + gp.player.screenX  &&
+            if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+                    worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                     worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-                    worldY - gp.tileSize < gp.player.worldY + gp.player.screenY ) {
+                    worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
-                g2.drawImage(tile[tileNum].image, screenX, screenY ,gp.tileSize,gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             }
 
             worldCol++;

@@ -13,12 +13,12 @@ public class OBJ_Key extends SuperObject {
         this.gp = gp;
 
         name = "Key";
-        try{
+        try {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/objects/key.png")));
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("object Key not found");
         }
 

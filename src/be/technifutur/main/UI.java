@@ -39,8 +39,8 @@ public class UI {
     public void draw(Graphics2D g2) {
         this.g2 = g2;
 
-        g2.setFont (arial_40);
-        g2.setColor (Color.white);
+        g2.setFont(arial_40);
+        g2.setColor(Color.white);
 
         //title state
         if (gp.gameState == gp.titleState) {
@@ -107,7 +107,7 @@ public class UI {
         return x;
     }
 
-    public void drawTitleScreen () {
+    public void drawTitleScreen() {
         g2.setColor(new Color(43, 41, 41));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
@@ -154,7 +154,7 @@ public class UI {
         }
     }
 
-    public void drawTime(){
+    public void drawTime() {
 
         g2.setFont(arial_40);
         g2.setColor(Color.white);
