@@ -1,6 +1,12 @@
 # <samp>OVERVIEW</samp>
 
-Short game "Treasure Hunt". This Game use swing.
+Short game "Treasure Hunt". This Game use swing. A small retro-style game, coded as a
+training exercise. 
+
+Technologies:
+Java, Swing/AWT, ImageIO,
+BufferedImage, javax.sound.sampled, keyboard events.
+
 Developed by [clawyn](https://github.com/clawyn).
 
 
